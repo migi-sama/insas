@@ -21,16 +21,12 @@
                             <tr>
                                 <th style="width: 10px">#</th>
                                 <th>Nombre</th>
-                                <th>Descripción</th>
-                                <th>Tipo</th>
-                                <th colspan="2" style="width: 2%">Acciones</th>
+                                <th colspan="2" style="width: 40px">Acciones</th>
                             </tr>
-                            @foreach($alergias ?? '' as $alergia)
+                            @foreach($tipos ?? '' as $tipo)
                                 <tr>
-                                    <td>{{ $alergia->id }}</td>
-                                    <td>{{ $alergia->nombre }}</td>
-                                    <td>{{ $alergia->descripcion }}</td>
-                                    <td>{{ $alergia->tipos->name }}</td>
+                                    <td>{{ $tipo->id }}</td>
+                                    <td>{{ $tipo->name }}</td>
                                     <td>
                                         <a href="#" class="btn btn-primary">
                                             <i class="fa fa-edit"></i>
@@ -51,7 +47,7 @@
                             @endforeach
                         </tbody>
                     </table>
-                  {!! $alergias ?? ''->links() !!}
+                  {!! $tipos ?? ''->links() !!}
 
                 </div><!-- /.box-body -->
             </div>

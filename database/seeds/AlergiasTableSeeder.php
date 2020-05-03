@@ -1,7 +1,7 @@
 <?php
 
 use App\Alergia;
-use App\tipoAlergia;
+use App\tipo_alergia;
 use Illuminate\Database\Seeder;
 
 class AlergiasTableSeeder extends Seeder
@@ -13,20 +13,20 @@ class AlergiasTableSeeder extends Seeder
      */
     public function run()
     {
-        $tipoAlergia = new tipoAlergia();
-        $tipoAlergia->nombre = "Respiratoria";
+        $tipoAlergia = new tipo_alergia();
+        $tipoAlergia->name = "Respiratoria";
         $tipoAlergia->save();
 
-        $tipoAlergia = new TipoAlergia();
-        $tipoAlergia->nombre = "Dérmica";
+        $tipoAlergia = new tipo_alergia();
+        $tipoAlergia->name = "Dérmica";
         $tipoAlergia->save();
 
-        $tipoAlergia = new TipoAlergia();
-        $tipoAlergia->nombre = "Alimentaria";
+        $tipoAlergia = new tipo_alergia();
+        $tipoAlergia->name = "Alimentaria";
         $tipoAlergia->save();
 
-        $tipoAlergia = new TipoAlergia();
-        $tipoAlergia->nombre = "Medicamento";
+        $tipoAlergia = new tipo_alergia();
+        $tipoAlergia->name = "Medicamento";
         $tipoAlergia->save();
 
 

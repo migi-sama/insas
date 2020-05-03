@@ -34,6 +34,11 @@
                     <i class="fa fa-th"></i> <span>Alergia</span> <small class="badge pull-right bg-green">new</small>
                 </a>
             </li>
+            <li>
+                <a href="{{ route('tipoAlergia.index') }}">
+                    <i class="fa fa-th"></i> <span>Tipos de alergia</span> <small class="badge pull-right bg-green">new</small>
+                </a>
+            </li>
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-bar-chart-o"></i>

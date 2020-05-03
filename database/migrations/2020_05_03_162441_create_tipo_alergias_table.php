@@ -15,7 +15,7 @@ class CreateTipoAlergiasTable extends Migration
     {
         Schema::create('tipo_alergias', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre', 50)->unique();
+            $table->string('name', 50)->unique();
             $table->timestamps();
         });
     }
