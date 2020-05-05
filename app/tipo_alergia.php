@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class tipo_alergia extends Model
 {
     protected $fillable=[
-        'nombre',
+        'name',
     ];
 
     public function alergia(){

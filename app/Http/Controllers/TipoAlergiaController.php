@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\tipo_alergia;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class TipoAlergiaController extends Controller
 {
@@ -12,9 +13,15 @@ class TipoAlergiaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $tipos = tipo_alergia::orderBy('id','asc')->paginate(2);
+        $nombre = $request->get('buscarpor');
+
+        $variablesurl = $request->all();
+        
+        $tipos = tipo_alergia::where('name','like',"%$nombre%")->orderBy('id','asc')->paginate(4)
+        ->appends($variablesurl);
+
         return view('tipoAlergia.list', compact('tipos'));
     }
 
@@ -25,7 +32,7 @@ class TipoAlergiaController extends Controller
      */
     public function create()
     {
-        //
+        return view('tipoAlergia.create');
     }
 
     /**
@@ -36,7 +43,14 @@ class TipoAlergiaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+        ]);
+   
+        tipo_alergia::create($request->all());
+    
+        return Redirect::to('tipoAlergia')
+       ->with('mensaje','Tipo de alergia creada satisfactoriamente.');
     }
 
     /**
@@ -58,7 +72,10 @@ class TipoAlergiaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $where = array('id' => $id);
+        $data['tipo_info'] = tipo_alergia::where($where)->first();
+
+        return view('tipoAlergia.edit', $data);
     }
 
     /**
@@ -70,7 +87,15 @@ class TipoAlergiaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+        ]);
+         
+        $update = ['name' => $request->name];
+        tipo_alergia::where('id',$id)->update($update);
+   
+        return Redirect::to('tipoAlergia')
+       ->with('success','Tipo de alergia actualizada satisfactoriamente');
     }
 
     /**
@@ -81,6 +106,18 @@ class TipoAlergiaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            //Eliminar registro
+            tipo_alergia::where('id',$id)->delete();
+            return Redirect::to('tipoAlergia')->with('mensaje','Tipo de alergia eliminada satisfactoriamente');
+        } 
+        catch (\Exception $e) {
+            return Redirect::to('tipoAlergia')->with('mensaje','No puede ser eliminada, está siendo usada.');
+        }
+    }
+
+    public function buscador (Request $request){
+        $tiposb = tipo_alergia::where("name","like",$request->texto."%")->take(10)->get();
+        return view('tipoAlergia.list', compact('tiposb'));
     }
 }

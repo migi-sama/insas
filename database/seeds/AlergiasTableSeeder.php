@@ -32,13 +32,13 @@ class AlergiasTableSeeder extends Seeder
 
         $libro = new Alergia();
         $libro->nombre = "Rinitis";
-        $libro->descripcion = "Respiración fea";
+        $libro->descripcion = "Inflamación del revestimiento mucoso de la nariz";
         $libro->tipoAlergia_id = 1;
         $libro->save();
         
         $libro = new Alergia();
         $libro->nombre = "Asma";
-        $libro->descripcion = "Respira peor";
+        $libro->descripcion = "Afección en la que las vías respiratorias de una persona se inflaman, estrechan y producen mayores cantidades de mucosa de lo normal";
         $libro->tipoAlergia_id = 1;
         $libro->save();
 

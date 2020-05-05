@@ -16,7 +16,7 @@ class CreateAlergiasTable extends Migration
         Schema::create('alergias', function (Blueprint $table) {
             $table->id();
             $table->string('nombre', 50)->unique();
-            $table->string('descripcion', 100);
+            $table->string('descripcion', 300);
             $table->unsignedBigInteger('tipoAlergia_id');
             $table->foreign('tipoAlergia_id')->references('id')->on('tipo_alergias');
             $table->timestamps();

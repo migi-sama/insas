@@ -2,20 +2,31 @@
 
 @section('contenido')
 
+@include('includes.mensaje')
+
 <section class="content-header">
 <h1>
-    Tablas simples
-    <small>Previsualización</small>
+    Alergias
+    <small>Lista</small>
 </h1>
 </section>
 <section class="content">
     <div class="row">
         <div class="col-md-12">
+            <div class="col-lg-9">
+                <a href="{{ route('alergia.create') }}" class="btn btn-success mb-2">Agregar</a>
+            </div>
+            <div class="form-group">
+                <form >
+                    <input type="text" name="buscarpor" placeholder="Buscar por nombre">
+                    <button class="btn btn-primary" type="submit">
+                        Buscar
+                    </button>
+                </form>
+            </div>
             <div class="box">
-                <div class="box-header">
-                    <h3 class="box-title">Un ejemplo de cómo debería quedar, opina</h3>
-                </div><!-- /.box-header -->
                 <div class="box-body no-padding">
+                    @if (count($alergias) >= 1)
                     <table class="table table-striped">
                         <tbody>
                             <tr>
@@ -32,17 +43,18 @@
                                     <td>{{ $alergia->descripcion }}</td>
                                     <td>{{ $alergia->tipos->name }}</td>
                                     <td>
-                                        <a href="#" class="btn btn-primary">
+                                        <a href="{{ route('alergia.edit', $alergia->id) }}" class="btn btn-primary">
                                             <i class="fa fa-edit"></i>
                                             Editar
                                         </a>
                                     </td>
                                     <td>
-                                        <form action="#" method="post">
+                                        <form action="{{ route('alergia.destroy', $alergia->id) }}" method="post">
                                             {{ csrf_field() }}
                                             @method('DELETE')
-                                            <button class="btn btn-danger fa fa-trash-alt" type="submit" 
+                                            <button class="btn btn-danger" type="submit" 
                                             onclick="return confirm('¿Está seguro de eliminarlo?')">
+                                            <i class="fa fa-times"></i>
                                             Eliminar</button>
                                         </form>
                                     </td>
@@ -51,8 +63,10 @@
                             @endforeach
                         </tbody>
                     </table>
-                  {!! $alergias ?? ''->links() !!}
-
+                    {!! $alergias ?? ''->links() !!}
+                    @else
+                        <h3>No hay registros aún.</h3>
+                    @endif
                 </div><!-- /.box-body -->
             </div>
         </div>

@@ -35,6 +35,7 @@
 
     </div>
 
+
     <!--Inicio Footer -->
     @include("theme/footer")
     <!-- Fin Footer -->
